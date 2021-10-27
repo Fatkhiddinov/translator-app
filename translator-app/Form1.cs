@@ -59,5 +59,15 @@ namespace translator_app
                 richTextBox1.Text = OpenFile.ReadToEnd();
             }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Add(textBox3.Text);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            richTextBox1.Text += this.listBox1.SelectedItem.ToString();
+        }
     }
 }
