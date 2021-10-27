@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace translator_app
 {
     public partial class Form1 : Form
@@ -40,6 +41,23 @@ namespace translator_app
         private void button4_Click(object sender, EventArgs e)
         {
             axWindowsMediaPlayer1.Ctlcontrols.pause();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //Boş
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog2 = new OpenFileDialog();
+
+            if(openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.textBox2.Text = openFileDialog2.FileName;
+                var OpenFile = new System.IO.StreamReader(openFileDialog2.FileName);
+                richTextBox1.Text = OpenFile.ReadToEnd();
+            }
         }
     }
 }
