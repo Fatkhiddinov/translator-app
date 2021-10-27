@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Text;
 using System.Windows.Forms;
 
@@ -68,6 +70,31 @@ namespace translator_app
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             richTextBox1.Text += this.listBox1.SelectedItem.ToString();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            textBox5.Text = Translate(textBox4.Text);
+        }
+        public String Translate(String word)
+        {
+            var toLanguage = "en";//English
+            var fromLanguage = "tr";//Turkish
+            var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + fromLanguage + "&tl=" + toLanguage + "&dt=t&q=" + HttpUtility.UrlEncode(word);
+            var webClient = new WebClient
+            {
+                Encoding = System.Text.Encoding.UTF8
+            };
+            var result = webClient.DownloadString(url);
+            try
+            {
+                result = result.Substring(4, result.IndexOf("\"", 4, StringComparison.Ordinal) - 4);
+                return result;
+            }
+            catch
+            {
+                return "Error";
+            }
         }
     }
 }
