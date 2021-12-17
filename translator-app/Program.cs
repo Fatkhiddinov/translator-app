@@ -15,7 +15,7 @@ namespace translator_app
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VideoFromURL());
+            Application.Run(new Form2());
         }
     }
 }
